@@ -792,6 +792,18 @@ export default function App() {
             <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
           </div>
         </div>
+
+        <p className="max-w-7xl mx-auto text-center text-[10px] text-white/45 mt-6 tracking-wider">
+          Designed by{' '}
+          <a
+            href="https://github.com/hozana-dusabimana"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-serif font-semibold gold-text-gradient hover:opacity-80 transition-opacity"
+          >
+            Hozana
+          </a>
+        </p>
       </footer>
 
       {/* Floating interactive action badges */}
