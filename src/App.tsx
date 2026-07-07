@@ -808,6 +808,18 @@ export default function App() {
 
       {/* Floating interactive action badges */}
       <aside className="fixed bottom-6 right-6 flex flex-col items-end space-y-3 z-30">
+        {/* Call button */}
+        <a
+          href="tel:+250786515208"
+          className="rose-gold-gradient text-primary p-4 rounded-full shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:scale-110 hover:shadow-xl transition-all duration-300 active:scale-95 group relative border border-gold/30"
+          id="floating-call-btn"
+        >
+          <span className="material-symbols-outlined text-2xl">call</span>
+          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-primary text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
+            Call Hosiane
+          </span>
+        </a>
+
         {/* WhatsApp Link button */}
         <a 
           href="https://wa.me/250786515208" 
