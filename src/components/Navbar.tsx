@@ -45,6 +45,7 @@ export default function Navbar({ onOpenBooking, onOpenAdmin, pendingBookingsCoun
             About
           </a>
 
+          {/* Artist Panel admin trigger — hidden from public navigation
           <button
             onClick={onOpenAdmin}
             className={`font-sans text-[11px] uppercase tracking-wider font-bold flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all relative border ${isScrolled ? 'text-primary hover:text-gold bg-gold/15 hover:bg-gold/25 border-gold/40' : 'text-white hover:text-gold-light bg-white/10 hover:bg-white/20 border-white/25'}`}
@@ -58,6 +59,7 @@ export default function Navbar({ onOpenBooking, onOpenAdmin, pendingBookingsCoun
               </span>
             )}
           </button>
+          */}
 
           <button
             onClick={onOpenBooking}
@@ -70,6 +72,7 @@ export default function Navbar({ onOpenBooking, onOpenAdmin, pendingBookingsCoun
 
         {/* Mobile menu and booking action triggers */}
         <div className="flex md:hidden items-center gap-2">
+          {/* Admin trigger (mobile) — hidden from public navigation
           <button
             onClick={onOpenAdmin}
             className={`font-sans text-[10px] uppercase font-bold px-2.5 py-1.5 rounded-full border flex items-center gap-1 relative transition-all ${isScrolled ? 'text-primary bg-gold/15 border-gold/40' : 'text-white bg-white/10 border-white/25'}`}
@@ -83,6 +86,7 @@ export default function Navbar({ onOpenBooking, onOpenAdmin, pendingBookingsCoun
               </span>
             )}
           </button>
+          */}
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
