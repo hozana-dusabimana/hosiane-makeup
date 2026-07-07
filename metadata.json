@@ -1,0 +1,6 @@
+{
+  "name": "Hosiane Makeup Portfolio & Booking",
+  "description": "Luxury beauty artistry portfolio and online booking system for Hosiane Makeup, featuring interactive before/after comparisons, custom services catalog, client testimonials, and integrated booking workflow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
