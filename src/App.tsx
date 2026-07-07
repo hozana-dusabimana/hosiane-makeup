@@ -61,7 +61,7 @@ export default function App() {
     // 0. Re-seed content when the bundled defaults change (e.g. new portfolio
     //    images). Bump DATA_VERSION whenever INITIAL_* content is updated.
     //    User-generated bookings are intentionally preserved.
-    const DATA_VERSION = '3';
+    const DATA_VERSION = '4';
     if (localStorage.getItem('hosiane_data_version') !== DATA_VERSION) {
       localStorage.removeItem('hosiane_services');
       localStorage.removeItem('hosiane_portfolio');
@@ -110,7 +110,7 @@ export default function App() {
           addOnIds: ['add-trial', 'add-hair'],
           date: '2026-07-10',
           timeSlot: '10:00',
-          totalPrice: 245,
+          totalPrice: 45000,
           notes: 'Prefer warm rose metallic gold palette. Hair styling should be elegant soft curls.',
           status: 'Pending',
           createdAt: '2026-07-06'
@@ -125,7 +125,7 @@ export default function App() {
           addOnIds: ['add-lashes'],
           date: '2026-07-11',
           timeSlot: '13:00',
-          totalPrice: 95,
+          totalPrice: 15000,
           notes: 'Need zero flashback foundation for professional studio flash photography.',
           status: 'Confirmed',
           createdAt: '2026-07-05'
@@ -142,6 +142,25 @@ export default function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll-reveal: fade + rise elements marked `.reveal-on-scroll` into view.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const els = document.querySelectorAll('.reveal-on-scroll:not(.is-visible)');
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeGalleryFilter, services, portfolio, testimonials]);
 
   // Handlers for state updates from Admin Portal
   const handleUpdateBookings = (updatedList: Booking[]) => {
@@ -339,15 +358,15 @@ export default function App() {
           </div>
         </div>
 
-        {/* Smooth gradient fade into the next (light) section */}
-        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-[#fff0f0] pointer-events-none" />
+        {/* Smooth gradient fade into the next (blush) section */}
+        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-[#ffe9ef] pointer-events-none" />
       </section>
 
       {/* About The Artist Section */}
       <section className="py-20 md:py-28 blush-wash border-y border-outline-variant/15" id="about">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
-          <div className="relative flex justify-center">
+          <div className="relative flex justify-center reveal-on-scroll">
             <div className="aspect-square w-full max-w-[380px] rounded-[3rem] overflow-hidden shadow-xl rotate-3 border-2 border-white hover:rotate-0 transition-transform duration-500">
               <img
                 src="/portfolio/glam-portrait.jpg"
@@ -359,7 +378,7 @@ export default function App() {
             <div className="absolute -bottom-4 -right-2 w-24 h-24 border-2 border-gold/40 rounded-full animate-spin-slow -z-10 hidden sm:block" />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 reveal-on-scroll">
             <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold block">The Artist &amp; Philosophy</span>
             <h2 className="font-serif text-3xl md:text-4xl text-primary font-bold">Artistry Meets Passion</h2>
             
@@ -398,20 +417,23 @@ export default function App() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto" id="services">
-        <div className="text-center mb-16 space-y-3">
+      <section className="py-20 md:py-28 champagne-wash border-b border-outline-variant/15" id="services">
+       <div className="px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-16 space-y-3 reveal-on-scroll">
           <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Tailored Beauties</span>
           <h2 className="font-serif text-3xl md:text-4xl text-primary font-bold">Luxury Makeup Services</h2>
+          <div className="gold-divider w-24 mx-auto !mt-5" />
           <p className="font-sans text-sm text-on-surface-variant max-w-xl mx-auto">
             Bespoke artistry collections curated for your special moments, blending the finest products with specialized long-wear mapping.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map(srv => (
-            <div 
+          {services.map((srv, i) => (
+            <div
               key={srv.id}
-              className="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative"
+              style={{ ['--reveal-delay' as string]: `${i * 90}ms` }}
+              className="reveal-on-scroll bg-white/80 backdrop-blur-sm border border-outline-variant rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-gold/50 transition-all duration-300 group relative"
               id={`service-card-${srv.id}`}
             >
               <div>
@@ -434,7 +456,7 @@ export default function App() {
               <div className="flex justify-between items-center border-t border-outline-variant/30 pt-4 mt-auto">
                 <div>
                   <p className="text-[9px] uppercase text-on-surface-variant font-semibold">Investment</p>
-                  <p className="font-serif font-bold text-primary text-base">From ${srv.price}</p>
+                  <p className="font-serif font-bold text-primary text-base">{srv.price.toLocaleString()} RWF</p>
                 </div>
                 <button 
                   onClick={() => triggerServiceBooking(srv.id)}
@@ -448,84 +470,55 @@ export default function App() {
             </div>
           ))}
         </div>
+       </div>
       </section>
 
       {/* Before/After Interactive Section */}
-      <section className="py-20 md:py-24 bg-surface-container px-4 md:px-8 border-y border-outline-variant/15">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-20 md:py-24 rose-wash px-4 md:px-8 border-y border-outline-variant/15">
+        <div className="max-w-4xl mx-auto reveal-on-scroll">
           <BeforeAfterSlider />
         </div>
       </section>
 
       {/* Feature Grids (Why Choose) */}
-      <section className="py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
-          <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Craftsmanship Detail</span>
-          <h2 className="font-serif text-3xl md:text-4xl text-primary font-bold">Why Choose Hosiane Artistry?</h2>
-          <p className="font-sans text-sm text-on-surface-variant max-w-xl mx-auto">
-            Experience the difference of meticulously planned professional application designed to bring peace of mind to your schedule.
-          </p>
-        </div>
+      <section className="py-20 md:py-28 plum-wash relative overflow-hidden">
+        {/* ambient glows */}
+        <div className="absolute top-0 left-[-10%] w-[400px] h-[400px] bg-rose/20 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-0 right-[-10%] w-[400px] h-[400px] bg-gold/15 rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">schedule</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">Punctuality Assured</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">Absolute professional commitment to timeline locks. We arrive early, setup seamlessly, and execute on time.</p>
-            </div>
+        <div className="px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16 space-y-3 reveal-on-scroll">
+            <span className="font-sans text-xs uppercase tracking-widest text-gold-light font-bold">Craftsmanship Detail</span>
+            <h2 className="font-serif text-3xl md:text-4xl text-white font-bold">Why Choose <span className="shimmer-text">Hosiane Artistry?</span></h2>
+            <div className="gold-divider w-24 mx-auto !mt-5" />
+            <p className="font-sans text-sm text-blush/70 max-w-xl mx-auto">
+              Experience the difference of meticulously planned professional application designed to bring peace of mind to your schedule.
+            </p>
           </div>
 
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">sanitizer</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">Medical-Grade Hygiene</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">Double-sanitization of all brushes, disposable wands, and product scrapers ahead of skin prep. Safe and absolute hygiene.</p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">diamond</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">Premium Product Kit</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">Exclusively luxury world-class cosmetics: Dior, Chanel, MAC, Huda Beauty, and Charlotte Tilbury for beautiful camera finishes.</p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">shutter_speed</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">16-Hour Armor wear</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">Specialized skin-mapping techniques and high-end binding sprays ensure zero-transfer, non-sweat flawless hold all day.</p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">face_5</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">Bespoke Skin Sculpt</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">We carefully adapt to skin sensitivities, undertones, and allergies, ensuring healthy-glow prep ahead of coloring.</p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 p-5 rounded-2xl hover:bg-surface-container transition-colors duration-200">
-            <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary shrink-0">
-              <span className="material-symbols-outlined text-sm">verified_user</span>
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-sm text-primary mb-1">Kigali Studio &amp; Travel</h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">Come visit our peaceful private makeup studio in Kigali, or request premium home-travel options directly at your venue.</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              { icon: 'schedule', title: 'Punctuality Assured', body: 'Absolute professional commitment to timeline locks. We arrive early, setup seamlessly, and execute on time.' },
+              { icon: 'sanitizer', title: 'Medical-Grade Hygiene', body: 'Double-sanitization of all brushes, disposable wands, and product scrapers ahead of skin prep. Safe and absolute hygiene.' },
+              { icon: 'diamond', title: 'Premium Product Kit', body: 'Exclusively luxury world-class cosmetics: Dior, Chanel, MAC, Huda Beauty, and Charlotte Tilbury for beautiful camera finishes.' },
+              { icon: 'shutter_speed', title: '16-Hour Armor Wear', body: 'Specialized skin-mapping techniques and high-end binding sprays ensure zero-transfer, non-sweat flawless hold all day.' },
+              { icon: 'face_5', title: 'Bespoke Skin Sculpt', body: 'We carefully adapt to skin sensitivities, undertones, and allergies, ensuring healthy-glow prep ahead of coloring.' },
+              { icon: 'verified_user', title: 'Kigali Studio & Travel', body: 'Come visit our peaceful private makeup studio in Kigali, or request premium home-travel options directly at your venue.' },
+            ].map((f, i) => (
+              <div
+                key={f.icon}
+                style={{ ['--reveal-delay' as string]: `${i * 80}ms` }}
+                className="reveal-on-scroll glass-card flex gap-4 p-5 rounded-2xl hover:bg-white/15 hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="w-11 h-11 rounded-full flex items-center justify-center text-primary shrink-0 rose-gold-gradient group-hover:scale-110 transition-transform duration-300">
+                  <span className="material-symbols-outlined text-lg">{f.icon}</span>
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-sm text-white mb-1">{f.title}</h3>
+                  <p className="text-xs text-blush/70 leading-relaxed">{f.body}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -534,7 +527,7 @@ export default function App() {
       <section className="py-20 md:py-28 rose-wash border-y border-outline-variant/15" id="portfolio">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal-on-scroll">
             <div>
               <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold block">Masterpieces Catalog</span>
               <h2 className="font-serif text-3xl md:text-4xl text-primary font-bold mt-1">Our Portfolio Gallery</h2>
@@ -562,11 +555,12 @@ export default function App() {
 
           {/* Masonry-like Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-masonry">
-            {filteredPortfolio.map(item => (
-              <div 
+            {filteredPortfolio.map((item, i) => (
+              <div
                 key={item.id}
                 onClick={() => setActiveLightboxItem(item)}
-                className="group relative overflow-hidden rounded-2xl shadow-md border border-outline-variant/20 aspect-[4/5] cursor-pointer bg-surface-container"
+                style={{ ['--reveal-delay' as string]: `${i * 90}ms` }}
+                className="reveal-on-scroll group relative overflow-hidden rounded-2xl shadow-md border border-outline-variant/20 aspect-[4/5] cursor-pointer bg-surface-container"
                 id={`portfolio-item-${item.id}`}
               >
                 <img 
@@ -594,16 +588,18 @@ export default function App() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto">
-        <TestimonialSection 
-          testimonials={testimonials}
-          onAddTestimonial={handleAddTestimonial}
-        />
+      <section className="py-20 md:py-28 blush-wash border-b border-outline-variant/15">
+        <div className="px-4 md:px-8 max-w-7xl mx-auto reveal-on-scroll">
+          <TestimonialSection
+            testimonials={testimonials}
+            onAddTestimonial={handleAddTestimonial}
+          />
+        </div>
       </section>
 
       {/* Booking Form (Contact / Place order look) */}
-      <section className="py-20 md:py-28 bg-surface px-4 md:px-8 border-t border-outline-variant/15" id="booking">
-        <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-5 border border-outline-variant/20">
+      <section className="py-20 md:py-28 champagne-wash px-4 md:px-8 border-t border-outline-variant/15" id="booking">
+        <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-5 border border-outline-variant/20 reveal-on-scroll">
           
           {/* Side static contact info panel */}
           <div className="md:col-span-2 hero-luxe-bg p-10 md:p-12 text-on-primary flex flex-col justify-between relative overflow-hidden">
@@ -691,7 +687,7 @@ export default function App() {
                       id="contact-form-service"
                     >
                       {services.map(s => (
-                        <option key={s.id} value={s.name}>{s.name} (${s.price})</option>
+                        <option key={s.id} value={s.name}>{s.name} ({s.price.toLocaleString()} RWF)</option>
                       ))}
                     </select>
                   </div>

@@ -143,11 +143,11 @@ export default function AdminPortal({
         <div className="bg-surface border-b border-outline-variant/30 grid grid-cols-2 md:grid-cols-4 px-8 py-4 gap-4 text-center">
           <div>
             <p className="text-[10px] uppercase text-on-surface-variant font-semibold tracking-wider">Confirmed Revenue</p>
-            <p className="text-xl font-serif font-bold text-primary mt-1">${totalRevenue}</p>
+            <p className="text-xl font-serif font-bold text-primary mt-1">{totalRevenue.toLocaleString()} RWF</p>
           </div>
           <div>
             <p className="text-[10px] uppercase text-on-surface-variant font-semibold tracking-wider">Pending Orders</p>
-            <p className="text-xl font-serif font-bold text-gold mt-1">${pendingRevenue}</p>
+            <p className="text-xl font-serif font-bold text-gold mt-1">{pendingRevenue.toLocaleString()} RWF</p>
           </div>
           <div>
             <p className="text-[10px] uppercase text-on-surface-variant font-semibold tracking-wider">Total Bookings</p>
@@ -284,7 +284,7 @@ export default function AdminPortal({
                         </div>
 
                         <div className="flex flex-wrap gap-2 items-center self-stretch md:self-auto justify-end border-t md:border-t-0 pt-3 md:pt-0">
-                          <span className="font-bold text-sm text-gold mr-2">${booking.totalPrice}</span>
+                          <span className="font-bold text-sm text-gold mr-2">{booking.totalPrice.toLocaleString()} RWF</span>
                           
                           {booking.status === 'Pending' && (
                             <button
@@ -355,14 +355,14 @@ export default function AdminPortal({
                       <div className="text-right flex items-center gap-4">
                         {editingServiceId === srv.id ? (
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-primary">$</span>
-                            <input 
-                              type="number" 
+                            <input
+                              type="number"
                               value={editPrice}
                               onChange={(e) => setEditPrice(parseInt(e.target.value) || 0)}
-                              className="w-16 bg-surface-container-lowest border border-outline p-1 rounded text-center text-xs text-primary"
+                              className="w-24 bg-surface-container-lowest border border-outline p-1 rounded text-center text-xs text-primary"
                               id={`input-edit-price-${srv.id}`}
                             />
+                            <span className="font-bold text-primary text-xs">RWF</span>
                             <button 
                               onClick={() => handleSavePrice(srv.id)}
                               className="bg-primary text-on-primary font-bold px-2.5 py-1 rounded hover:opacity-90"
@@ -379,7 +379,7 @@ export default function AdminPortal({
                           </div>
                         ) : (
                           <div className="flex items-center gap-4">
-                            <span className="text-lg font-serif font-bold text-primary">${srv.price}</span>
+                            <span className="text-lg font-serif font-bold text-primary">{srv.price.toLocaleString()} RWF</span>
                             <button
                               onClick={() => {
                                 setEditingServiceId(srv.id);

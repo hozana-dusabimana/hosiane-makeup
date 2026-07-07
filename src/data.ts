@@ -6,7 +6,7 @@ export const INITIAL_SERVICES: MakeupService[] = [
     name: 'Bridal Artistry',
     category: 'Bridal',
     description: 'Timeless, elegant radiance engineered to stay flawless from the first tear to the late-night dance floor.',
-    price: 150,
+    price: 10000,
     durationMinutes: 120,
     icon: 'Sparkles',
     features: [
@@ -21,7 +21,7 @@ export const INITIAL_SERVICES: MakeupService[] = [
     name: 'Graduation Glam',
     category: 'Graduation',
     description: 'Polished and sophisticated look tailored to stand out under stage lighting and pop in high-res photographs.',
-    price: 80,
+    price: 10000,
     durationMinutes: 60,
     icon: 'GraduationCap',
     features: [
@@ -36,7 +36,7 @@ export const INITIAL_SERVICES: MakeupService[] = [
     name: 'Editorial Photoshoot',
     category: 'Photoshoot',
     description: 'High-definition, creative, or ultra-glam styling specifically adapted for studio strobes or outdoor natural lighting.',
-    price: 100,
+    price: 10000,
     durationMinutes: 90,
     icon: 'Camera',
     features: [
@@ -51,7 +51,7 @@ export const INITIAL_SERVICES: MakeupService[] = [
     name: 'Luxury Home Service',
     category: 'Home Service',
     description: 'A full-scale red carpet luxury beauty experience delivered in the safety and absolute comfort of your residence.',
-    price: 120,
+    price: 10000,
     durationMinutes: 90,
     icon: 'Home',
     features: [
@@ -67,25 +67,25 @@ export const SERVICE_ADDONS: ServiceAddOn[] = [
   {
     id: 'add-lashes',
     name: 'Luxury 3D Silk Lashes Upgrade',
-    price: 15,
+    price: 5000,
     description: 'Upgrade standard lashes to reusable ultra-fluffy multi-layered silk lashes.'
   },
   {
     id: 'add-trial',
     name: 'Comprehensive Trial Consultation',
-    price: 45,
+    price: 15000,
     description: 'A dedicated 60-minute trial session ahead of your main event to lock in the perfect palette.'
   },
   {
     id: 'add-hair',
     name: 'Bridal Hair Styling Touch-up',
-    price: 50,
+    price: 20000,
     description: 'Elegant soft curls, classy updo, or sleek styling to complement your makeup look.'
   },
   {
     id: 'add-glow',
     name: '24k Gold Serum Collagen Prep',
-    price: 20,
+    price: 8000,
     description: 'Instantly plumps, hydrates, and adds a natural, dewy inner glow to your skin ahead of makeup.'
   }
 ];

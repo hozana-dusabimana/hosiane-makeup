@@ -169,7 +169,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                 <div>
                   <span className="text-[10px] uppercase text-gold tracking-wider">Service</span>
                   <p className="text-sm font-semibold">{selectedService.name}</p>
-                  <p className="text-xs text-white/60">${basePrice} base price</p>
+                  <p className="text-xs text-white/60">{basePrice.toLocaleString()} RWF base price</p>
                 </div>
 
                 {selectedAddons.length > 0 && (
@@ -178,7 +178,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                     <ul className="text-xs text-white/80 list-disc list-inside space-y-1">
                       {selectedAddons.map(aid => {
                         const ad = SERVICE_ADDONS.find(a => a.id === aid);
-                        return ad ? <li key={aid}>{ad.name} (+${ad.price})</li> : null;
+                        return ad ? <li key={aid}>{ad.name} (+{ad.price.toLocaleString()} RWF)</li> : null;
                       })}
                     </ul>
                   </div>
@@ -198,7 +198,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
 
             <div className="mt-8 pt-6 border-t border-white/10">
               <span className="text-xs text-white/50 block">Est. Total Investment</span>
-              <span className="text-3xl font-serif font-bold text-gold-light">${totalPrice}</span>
+              <span className="text-3xl font-serif font-bold text-gold-light">{totalPrice.toLocaleString()} RWF</span>
             </div>
           </div>
 
@@ -242,7 +242,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                     >
                       <div className="flex justify-between items-start">
                         <span className="font-serif font-semibold text-sm text-primary">{srv.name}</span>
-                        <span className="text-xs font-bold text-gold">${srv.price}</span>
+                        <span className="text-xs font-bold text-gold">{srv.price.toLocaleString()} RWF</span>
                       </div>
                       <p className="text-[11px] text-on-surface-variant line-clamp-2 mt-1 leading-normal">{srv.description}</p>
                     </button>
@@ -275,7 +275,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                             <p className="text-[10px] text-on-surface-variant">{addon.description}</p>
                           </div>
                         </div>
-                        <span className="font-bold text-gold-light bg-primary/5 px-2 py-0.5 rounded ml-2">+${addon.price}</span>
+                        <span className="font-bold text-gold-light bg-primary/5 px-2 py-0.5 rounded ml-2">+{addon.price.toLocaleString()} RWF</span>
                       </label>
                     ))}
                   </div>
@@ -432,7 +432,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                       <ul className="list-disc list-inside text-on-surface-variant space-y-1 pl-1">
                         {selectedAddons.map(aid => {
                           const ad = SERVICE_ADDONS.find(a => a.id === aid);
-                          return ad ? <li key={aid}>{ad.name} (+${ad.price})</li> : null;
+                          return ad ? <li key={aid}>{ad.name} (+{ad.price.toLocaleString()} RWF)</li> : null;
                         })}
                       </ul>
                     </div>
@@ -476,7 +476,7 @@ export default function BookingWizard({ initialServiceId, onClose, onBookingAdde
                   <p><strong className="text-primary">Artistry:</strong> {selectedService.name}</p>
                   <p><strong className="text-primary">Reserved Slot:</strong> {selectedDate} @ {selectedTime}</p>
                   <p><strong className="text-primary">Contact:</strong> {clientPhone}</p>
-                  <p><strong className="text-primary">Total Investment:</strong> ${totalPrice}</p>
+                  <p><strong className="text-primary">Total Investment:</strong> {totalPrice.toLocaleString()} RWF</p>
                 </div>
 
                 <button 

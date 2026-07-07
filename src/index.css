@@ -84,19 +84,65 @@
     linear-gradient(135deg, #2d0010 0%, #45000c 32%, #6d0019 62%, #8c2140 100%);
 }
 
-/* Soft feminine section wash — blush to champagne, never flat white. */
+/* Soft feminine section wash — clearly blush-toned, never flat white. */
 .blush-wash {
-  background-color: #fff8f7;
+  background-color: #ffe3ea;
   background-image:
-    radial-gradient(ellipse 60% 50% at 10% 0%, rgba(255, 228, 234, 0.9), transparent 60%),
-    radial-gradient(ellipse 70% 60% at 100% 100%, rgba(247, 231, 200, 0.7), transparent 55%);
+    radial-gradient(ellipse 65% 55% at 8% 0%, rgba(255, 209, 222, 0.95), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 100% 100%, rgba(247, 224, 190, 0.9), transparent 58%),
+    linear-gradient(160deg, #ffe9ef 0%, #ffdbe6 55%, #fbe7d2 100%);
 }
 
 .rose-wash {
-  background-color: #fff0f0;
+  background-color: #ffdbe4;
   background-image:
-    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(232, 138, 164, 0.22), transparent 60%),
-    radial-gradient(ellipse 65% 55% at 100% 0%, rgba(212, 175, 55, 0.14), transparent 55%);
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(232, 138, 164, 0.42), transparent 62%),
+    radial-gradient(ellipse 65% 55% at 100% 0%, rgba(241, 211, 130, 0.5), transparent 58%),
+    linear-gradient(160deg, #ffe1e9 0%, #ffccdb 52%, #f4ddc4 100%);
+}
+
+/* Warm champagne wash — gold-kissed cream for alternating sections. */
+.champagne-wash {
+  background-color: #fbe7cf;
+  background-image:
+    radial-gradient(ellipse 65% 55% at 100% 0%, rgba(244, 214, 158, 0.95), transparent 58%),
+    radial-gradient(ellipse 60% 52% at 0% 100%, rgba(240, 170, 190, 0.55), transparent 62%),
+    linear-gradient(160deg, #fdeccf 0%, #fbe1cf 50%, #ffe4ec 100%);
+}
+
+/* Deep romantic wash for feature/CTA bands (dark, like the hero). */
+.plum-wash {
+  background-color: #45000c;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 12% 10%, rgba(224, 168, 153, 0.20), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 88% 90%, rgba(212, 175, 55, 0.18), transparent 55%),
+    linear-gradient(140deg, #2d0010 0%, #45000c 45%, #6d0019 100%);
+}
+
+/* Decorative gold hairline divider with a diamond centre. */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+/* ---- Scroll-reveal system ---- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Rose-gold gradient for premium buttons/fills. */
