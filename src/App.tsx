@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 
 import Navbar from './components/Navbar';
+import Typewriter from './components/Typewriter';
 import BeforeAfterSlider from './components/BeforeAfterSlider';
 import BookingWizard from './components/BookingWizard';
 import AdminPortal from './components/AdminPortal';
@@ -280,22 +281,25 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center w-full relative z-10">
           {/* Hero text */}
-          <div className="space-y-7 text-center md:text-left animate-rise-in">
-            <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 rounded-full">
+          <div className="space-y-7 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 rounded-full animate-rise-in">
               <span className="w-1.5 h-1.5 bg-gold rounded-full animate-ping" />
               <span className="text-[10px] uppercase font-bold tracking-[0.2em] shimmer-text">Certified Luxury Artistry</span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[4.2rem] text-white font-bold leading-[1.08] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[4.2rem] text-white font-bold leading-[1.08] tracking-tight animate-rise-in" style={{ animationDelay: '0.12s' }}>
               Reveal Your Most <br />
-              <span className="shimmer-text italic font-normal">Beautiful Self</span>
+              <Typewriter
+                words={['Beautiful Self', 'Radiant Glow', 'Confident Self', 'Flawless Look']}
+                className="shimmer-text italic font-normal"
+              />
             </h1>
 
-            <p className="font-sans text-sm md:text-base text-blush/80 max-w-md mx-auto md:mx-0 leading-relaxed">
+            <p className="font-sans text-sm md:text-base text-blush/80 max-w-md mx-auto md:mx-0 leading-relaxed animate-rise-in" style={{ animationDelay: '0.26s' }}>
               Professional makeup artistry custom-sculpted for life's most precious milestones. Specialized in bespoke bridal, graduation glam, and high-fashion editorial styling.
             </p>
 
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-2 animate-rise-in" style={{ animationDelay: '0.4s' }}>
               <button
                 onClick={() => triggerServiceBooking('srv-bridal')}
                 className="rose-gold-gradient text-primary font-semibold px-8 py-4 rounded-full animate-glow-pulse hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2 text-xs uppercase tracking-wider font-bold"
@@ -315,7 +319,7 @@ export default function App() {
             </div>
 
             {/* Trust markers */}
-            <div className="flex items-center justify-center md:justify-start gap-6 pt-4 text-white/70">
+            <div className="flex items-center justify-center md:justify-start gap-6 pt-4 text-white/70 animate-rise-in" style={{ animationDelay: '0.54s' }}>
               <div className="text-center md:text-left">
                 <p className="font-serif text-2xl font-bold text-gold-light">500+</p>
                 <p className="text-[10px] uppercase tracking-widest">Faces Glammed</p>
@@ -337,12 +341,14 @@ export default function App() {
           <div className="relative flex justify-center w-full animate-rise-in" style={{ animationDelay: '0.2s' }}>
             {/* Rotating gold ring halo */}
             <div className="absolute w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] border border-dashed border-gold/30 rounded-full animate-spin-slow pointer-events-none" />
-            <div className="relative aspect-[4/5] w-full max-w-[360px] rounded-[2.5rem] overflow-hidden glow-ring z-10 hover:scale-[1.02] transition-transform duration-500">
-              <img
-                src="/portfolio/hero-bridal.jpg"
-                alt="Traditional glam bridal look by Hosiane Makeup"
-                className="w-full h-full object-cover"
-              />
+            <div className="animate-float-slow relative z-10 w-full max-w-[360px]">
+              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glow-ring hover:scale-[1.02] transition-transform duration-500">
+                <img
+                  src="/portfolio/hero-bridal.jpg"
+                  alt="Traditional glam bridal look by Hosiane Makeup"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             {/* Floating glass credential card */}
             <div className="absolute -bottom-5 -left-3 sm:-left-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 z-20 shadow-xl animate-rise-in" style={{ animationDelay: '0.6s' }}>
@@ -367,12 +373,14 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
           <div className="relative flex justify-center reveal-on-scroll">
-            <div className="aspect-square w-full max-w-[380px] rounded-[3rem] overflow-hidden shadow-xl rotate-3 border-2 border-white hover:rotate-0 transition-transform duration-500">
-              <img
-                src="/portfolio/glam-portrait.jpg"
-                alt="Detailed closeup of natural rose glam makeup artistry"
-                className="w-full h-full object-cover object-top"
-              />
+            <div className="animate-float-slow w-full max-w-[380px]">
+              <div className="aspect-square w-full rounded-[3rem] overflow-hidden shadow-xl rotate-3 border-2 border-white hover:rotate-0 transition-transform duration-500">
+                <img
+                  src="/portfolio/glam-portrait.jpg"
+                  alt="Detailed closeup of natural rose glam makeup artistry"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
             </div>
             <div className="absolute inset-0 max-w-[380px] mx-auto rose-gold-gradient opacity-30 rounded-[3rem] -rotate-3 -z-10" />
             <div className="absolute -bottom-4 -right-2 w-24 h-24 border-2 border-gold/40 rounded-full animate-spin-slow -z-10 hidden sm:block" />
