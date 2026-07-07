@@ -1,6 +1,8 @@
-@import "tailwindcss";
-
+/* Font @import MUST come before Tailwind's rules — a CSS @import placed after
+   any other rule is invalid and silently ignored (that broke the Material
+   Symbols icon font, rendering icons as literal text like "check"). */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-serif: "Playfair Display", Georgia, serif;
@@ -11,6 +13,16 @@
   --color-on-primary: #fff8f7;
   --color-gold: #D4AF37;
   --color-gold-light: #F1D382;
+
+  /* Romantic luxe accents */
+  --color-wine: #2d0010;
+  --color-plum: #5a0f2e;
+  --color-rose: #b03a5b;
+  --color-rose-light: #e88aa4;
+  --color-blush: #ffe4ea;
+  --color-champagne: #f7e7c8;
+  --color-rose-gold: #e0a899;
+
   --color-background: #fff8f7;
   --color-surface: #fff8f7;
   --color-surface-container-lowest: #ffffff;
@@ -18,7 +30,7 @@
   --color-surface-container: #ffe9e8;
   --color-surface-container-high: #fae3e3;
   --color-surface-container-highest: #f4dddd;
-  
+
   --color-on-background: #241919;
   --color-on-surface-variant: #574142;
   --color-outline: #8b7171;
@@ -55,6 +67,105 @@
   background: linear-gradient(135deg, #D4AF37 0%, #F1D382 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   LUXE VISUAL SYSTEM — romantic, glamorous, feminine
+   ============================================================ */
+
+/* Rich romantic hero backdrop: deep wine → plum → rose with
+   layered radial glows (gold + rose) for a candle-lit luxury feel. */
+.hero-luxe-bg {
+  background-color: #2d0010;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 15%, rgba(224, 168, 153, 0.28), transparent 60%),
+    radial-gradient(ellipse 70% 70% at 85% 25%, rgba(212, 175, 55, 0.22), transparent 55%),
+    radial-gradient(ellipse 90% 80% at 75% 90%, rgba(176, 58, 91, 0.45), transparent 60%),
+    linear-gradient(135deg, #2d0010 0%, #45000c 32%, #6d0019 62%, #8c2140 100%);
+}
+
+/* Soft feminine section wash — blush to champagne, never flat white. */
+.blush-wash {
+  background-color: #fff8f7;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 10% 0%, rgba(255, 228, 234, 0.9), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 100% 100%, rgba(247, 231, 200, 0.7), transparent 55%);
+}
+
+.rose-wash {
+  background-color: #fff0f0;
+  background-image:
+    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(232, 138, 164, 0.22), transparent 60%),
+    radial-gradient(ellipse 65% 55% at 100% 0%, rgba(212, 175, 55, 0.14), transparent 55%);
+}
+
+/* Rose-gold gradient for premium buttons/fills. */
+.rose-gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F1D382 45%, #e0a899 100%);
+}
+
+/* Glassmorphism card that reads on both light and dark backdrops. */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Glowing gold ring accent (portrait frames, avatars). */
+.glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.4),
+    0 20px 60px -15px rgba(212, 175, 55, 0.35),
+    0 30px 80px -20px rgba(45, 0, 16, 0.6);
+}
+
+/* Animated shimmer sweep for gold text / badges. */
+.shimmer-text {
+  background: linear-gradient(100deg, #D4AF37 20%, #fff6da 45%, #F1D382 55%, #D4AF37 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 4.5s linear infinite;
+}
+
+@keyframes shimmer-sweep {
+  to { background-position: 200% center; }
+}
+
+/* Slow ambient rotation for decorative gold rings/orbs. */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+/* Gentle rise-in for hero content. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise-in {
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+/* Soft pulsing glow for CTA emphasis. */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25); }
+  50% { box-shadow: 0 14px 46px rgba(212, 175, 55, 0.5); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 /* Custom horizontal testimonial scrolls */

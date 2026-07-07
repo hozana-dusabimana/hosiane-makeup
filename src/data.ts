@@ -93,43 +93,27 @@ export const SERVICE_ADDONS: ServiceAddOn[] = [
 export const INITIAL_PORTFOLIO: PortfolioItem[] = [
   {
     id: 'p-1',
-    title: 'Editorial Glow',
-    category: 'Editorial',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFyRitHzsgYDD8loJvtsKeA-J_cMAUonbWy0EsSZKG5Ncc7HbG2XLA3LW-MzaodxqZ_1Jv_VxO2NNY_kqSV7OA4kD1H45h9LZwOMp0_vvCipSP61jltmeaXa19d0gMeDvdrI5lLSa1prs0qINe7Ym024WaF_bZ8CWS9iQGO6z6nyhzSHhg3f9Jp1ZpqalVxIEUmxhMYW1ozccTkSFIA0kX4cFO5Yh94q0spKNCBeo6df9e58sgmZAO_rC34bEq6hjBCEa4NFmicpo',
-    description: 'A radiant, high-fashion glow featuring soft, airbrushed skin with clean, minimalist brush work.',
-    artistQuote: 'The focus here was minimalist majesty—highlighting skin health and bone structure with subtle warmth.'
+    title: 'Soft Rose Glam',
+    category: 'Bridal',
+    image: '/portfolio/glam-portrait.jpg',
+    description: 'A radiant, natural-glam bridal look with rose-kissed lids, defined brows, and a luminous glossy lip.',
+    artistQuote: 'Framed by warmth—soft rose golds bring out the gaze for an unforgettable, timeless portrait.'
   },
   {
     id: 'p-2',
-    title: 'Delicate Rose Shimmer',
-    category: 'Bridal',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCcNU-RKHuYYpvHoassurDF8vO5jcYyiModsb4xuyDJuzV27fQrNJIhz38AjzwVP1lFqX71zrDve0JsDAflSIR1TQHk5MU3kXpzfmIIXMrsoF7tfrNy-Tn8dEulVBs9aC_GFu1FWq3rzEoJGKXvXPx-_TfdG_6fmNmr-igYYHXG5843gj40zwKFLC1Pl29s7HWKjI7Y6p_xlc7rXmKhnSRddoL-pPT9XAZqaFcPIEdcZhKg4jbcRbRmbZyuK0sygl1VDljY3X2F7HQ',
-    description: 'Close-up artistry showcasing rose and shimmering gold shadow, blended to perfection for a soft wedding look.',
-    artistQuote: 'A delicate palette of warm rose golds brings out the gaze, creating an unforgettable timeless portrait.'
+    title: 'Editorial Brush Artistry',
+    category: 'Editorial',
+    image: '/portfolio/glam-brushes.jpg',
+    description: 'High-fashion editorial glow featuring airbrushed skin, shimmering lids, and clean, minimalist brush work.',
+    artistQuote: 'The focus here was minimalist majesty—highlighting skin health and bone structure with subtle warmth.'
   },
   {
     id: 'p-3',
-    title: 'Sultry Sunset Evening Glam',
+    title: 'Studio Signature Look',
     category: 'Events',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAuFpBeVBNC4Prc_ArY53zaV8itSMxGqyOGvn5IYeOJns-iwIsHE6VEzZqob5EoN6M2SMxwF6h_M-hnrOnFyDRT9zFMcCy0SG0-feBWD-7DerjuZB7gQDK3Sq05qOQwgTgJrJpj_PNnDnIYbrSXXGazQRJ7nr9FlXyOPg5GT7ScPs3jMZNC_mgUe5EGnKQRDqwO7lcfOXzfLuXvA-pZ763XTJdDOdwWoP1rKlILZdZePsAEwCBcU3soyQMO0gEyyA0FB8uEDlEVO1I',
-    description: 'Stunning evening look with a bold sunset lip, sharp cut crease, and shimmering smokey highlights.',
-    artistQuote: 'Designed for candlelight and city lights, pairing a deep, rich lip with a gold-kissed lid.'
-  },
-  {
-    id: 'p-4',
-    title: 'Golden Hour Radiance',
-    category: 'Bridal',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop',
-    description: 'Flawless warm-toned contour paired with a glossy bronze lip for summer weddings.',
-    artistQuote: 'A celebration of natural features bathed in golden-hour warmth.'
-  },
-  {
-    id: 'p-5',
-    title: 'Classic Red-Lip Couture',
-    category: 'Editorial',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1200&auto=format&fit=crop',
-    description: 'High-contrast matte red lips with satin-finish skin and sharp winged eyeliner.',
-    artistQuote: 'Couture elegance is a dialogue between precision lines and bold color statements.'
+    image: '/portfolio/hero-bridal.jpg',
+    description: 'A polished, camera-ready event look with flawless coverage and a soft, glowing finish that lasts all night.',
+    artistQuote: 'Designed for the spotlight—balanced, radiant, and sculpted to shine under any lighting.'
   }
 ];
 
@@ -167,16 +151,17 @@ export const BEFORE_AFTER_LOOKS: BeforeAfterLook[] = [
   {
     id: 'ba-bridal',
     title: 'Royal Bridal Transformation',
-    description: 'Enhancing undertones with premium airbrush hydration, flawless coverage, and a gold-kissed glow.',
-    // Using high resolution portfolio items as after image, and styled greyed-out for before
-    beforeImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFyRitHzsgYDD8loJvtsKeA-J_cMAUonbWy0EsSZKG5Ncc7HbG2XLA3LW-MzaodxqZ_1Jv_VxO2NNY_kqSV7OA4kD1H45h9LZwOMp0_vvCipSP61jltmeaXa19d0gMeDvdrI5lLSa1prs0qINe7Ym024WaF_bZ8CWS9iQGO6z6nyhzSHhg3f9Jp1ZpqalVxIEUmxhMYW1ozccTkSFIA0kX4cFO5Yh94q0spKNCBeo6df9e58sgmZAO_rC34bEq6hjBCEa4NFmicpo',
-    afterImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDkKv02r5TSthMJ6JAWZBI8vwvXW3s14eYJr3RpQXdpick-ChLCUk6NCPy3hKt6yOQEclwkwDZSjWWPHU-oWDfiXx0L6OnKkp-Do_BTNeUiVhZJ6Y5R03gCeLVMalOZfKPLasylk_niAHg1uLgvoEonyI7LjqmdMF8ogpHpyF8GW62ZOf7ArMeQazsnPP-szUA1sl2wH6hHcx1iigH9RrC8Bq0tOM6p7zkDtJqJOzZTy5cup8wl4zgimxBksteuRDD6saTcHBulnM8'
+    description: 'Drag to reveal the color transformation—enhanced undertones, flawless coverage, and a gold-kissed glow.',
+    // No bare-face source available: the "before" side shows the same photo styled
+    // grayscale, so dragging reveals the full-color makeup artistry.
+    beforeImage: '/portfolio/glam-portrait.jpg',
+    afterImage: '/portfolio/glam-portrait.jpg'
   },
   {
     id: 'ba-sunset',
-    title: 'Sultry Sunset Glam',
-    description: 'Moving from a bare natural base to a highly sculpted, dramatic sunset cut crease.',
-    beforeImage: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop',
-    afterImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAuFpBeVBNC4Prc_ArY53zaV8itSMxGqyOGvn5IYeOJns-iwIsHE6VEzZqob5EoN6M2SMxwF6h_M-hnrOnFyDRT9zFMcCy0SG0-feBWD-7DerjuZB7gQDK3Sq05qOQwgTgJrJpj_PNnDnIYbrSXXGazQRJ7nr9FlXyOPg5GT7ScPs3jMZNC_mgUe5EGnKQRDqwO7lcfOXzfLuXvA-pZ763XTJdDOdwWoP1rKlILZdZePsAEwCBcU3soyQMO0gEyyA0FB8uEDlEVO1I'
+    title: 'Editorial Glam Reveal',
+    description: 'Drag from a muted tone to the fully sculpted, shimmering editorial finish.',
+    beforeImage: '/portfolio/glam-brushes.jpg',
+    afterImage: '/portfolio/glam-brushes.jpg'
   }
 ];

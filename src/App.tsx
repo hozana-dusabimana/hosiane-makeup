@@ -61,7 +61,7 @@ export default function App() {
     // 0. Re-seed content when the bundled defaults change (e.g. new portfolio
     //    images). Bump DATA_VERSION whenever INITIAL_* content is updated.
     //    User-generated bookings are intentionally preserved.
-    const DATA_VERSION = '2';
+    const DATA_VERSION = '3';
     if (localStorage.getItem('hosiane_data_version') !== DATA_VERSION) {
       localStorage.removeItem('hosiane_services');
       localStorage.removeItem('hosiane_portfolio');
@@ -238,86 +238,125 @@ export default function App() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" id="hero">
-        {/* Decorative lighting background blobs */}
-        <div className="absolute top-[20%] left-[-10%] w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-primary-light/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-gold/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden hero-luxe-bg" id="hero">
+        {/* Decorative lighting glows */}
+        <div className="absolute top-[10%] left-[-8%] w-[350px] md:w-[520px] h-[350px] md:h-[520px] bg-rose/25 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-[5%] right-[-8%] w-[360px] md:w-[620px] h-[360px] md:h-[620px] bg-gold/20 rounded-full blur-[150px] pointer-events-none" />
 
         {/* Ambient Floating Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-          <div className="absolute text-primary-light/10 text-8xl top-[25%] left-[8%] animate-float-brush hidden md:block">
-            <span className="material-symbols-outlined text-[100px]">brush</span>
+          <div className="absolute text-white/5 top-[22%] left-[6%] animate-float-brush hidden md:block">
+            <span className="material-symbols-outlined text-[120px]">brush</span>
           </div>
-          <div className="absolute text-gold/25 text-5xl bottom-[20%] right-[10%] animate-float-sparkle">
-            <span className="material-symbols-outlined text-[60px]">flare</span>
+          <div className="absolute text-gold/40 bottom-[18%] right-[12%] animate-float-sparkle">
+            <span className="material-symbols-outlined text-[64px]">flare</span>
+          </div>
+          <div className="absolute text-rose-light/30 top-[16%] right-[22%] animate-float-sparkle" style={{ animationDelay: '1.5s' }}>
+            <span className="material-symbols-outlined text-[38px]">auto_awesome</span>
+          </div>
+          <div className="absolute text-gold-light/20 bottom-[30%] left-[18%] animate-float-sparkle" style={{ animationDelay: '2.5s' }}>
+            <span className="material-symbols-outlined text-[30px]">favorite</span>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center w-full relative z-10">
           {/* Hero text */}
-          <div className="space-y-6 text-center md:text-left mt-8 md:mt-0">
-            <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full">
+          <div className="space-y-7 text-center md:text-left animate-rise-in">
+            <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 rounded-full">
               <span className="w-1.5 h-1.5 bg-gold rounded-full animate-ping" />
-              <span className="text-[10px] uppercase font-bold tracking-widest text-primary">Certified Luxury Artistry</span>
+              <span className="text-[10px] uppercase font-bold tracking-[0.2em] shimmer-text">Certified Luxury Artistry</span>
             </div>
-            
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary font-bold leading-[1.1] tracking-tight">
+
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[4.2rem] text-white font-bold leading-[1.08] tracking-tight">
               Reveal Your Most <br />
-              <span className="gold-text-gradient italic font-normal">Beautiful Self</span>
+              <span className="shimmer-text italic font-normal">Beautiful Self</span>
             </h1>
-            
-            <p className="font-sans text-sm md:text-base text-on-surface-variant max-w-md mx-auto md:mx-0 leading-relaxed">
+
+            <p className="font-sans text-sm md:text-base text-blush/80 max-w-md mx-auto md:mx-0 leading-relaxed">
               Professional makeup artistry custom-sculpted for life's most precious milestones. Specialized in bespoke bridal, graduation glam, and high-fashion editorial styling.
             </p>
-            
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-              <button 
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+              <button
                 onClick={() => triggerServiceBooking('srv-bridal')}
-                className="gold-gradient text-primary font-semibold px-8 py-4 rounded-full shadow-[0_10px_30px_rgba(212,175,55,0.25)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 text-xs uppercase tracking-wider font-bold"
+                className="rose-gold-gradient text-primary font-semibold px-8 py-4 rounded-full animate-glow-pulse hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2 text-xs uppercase tracking-wider font-bold"
                 id="hero-book-btn"
               >
-                Schedule Consultation 
+                Schedule Consultation
                 <span className="material-symbols-outlined text-sm font-bold">calendar_month</span>
               </button>
-              <a 
-                href="#portfolio" 
-                className="border-2 border-primary text-primary font-bold px-8 py-4 rounded-full hover:bg-primary/5 transition-all duration-300 text-xs uppercase tracking-wider"
+              <a
+                href="#portfolio"
+                className="glass-card text-white font-bold px-8 py-4 rounded-full hover:bg-white/15 transition-all duration-300 text-xs uppercase tracking-wider flex items-center gap-2"
                 id="hero-portfolio-btn"
               >
                 View Masterpieces
+                <span className="material-symbols-outlined text-sm">arrow_outward</span>
               </a>
+            </div>
+
+            {/* Trust markers */}
+            <div className="flex items-center justify-center md:justify-start gap-6 pt-4 text-white/70">
+              <div className="text-center md:text-left">
+                <p className="font-serif text-2xl font-bold text-gold-light">500+</p>
+                <p className="text-[10px] uppercase tracking-widest">Faces Glammed</p>
+              </div>
+              <div className="w-px h-9 bg-white/15" />
+              <div className="text-center md:text-left">
+                <p className="font-serif text-2xl font-bold text-gold-light">5.0★</p>
+                <p className="text-[10px] uppercase tracking-widest">Client Rating</p>
+              </div>
+              <div className="w-px h-9 bg-white/15" />
+              <div className="text-center md:text-left">
+                <p className="font-serif text-2xl font-bold text-gold-light">8 yrs</p>
+                <p className="text-[10px] uppercase tracking-widest">Artistry</p>
+              </div>
             </div>
           </div>
 
           {/* Hero Portrait with gold frames */}
-          <div className="relative flex justify-center w-full">
-            <div className="relative aspect-[4/5] w-full max-w-[360px] rounded-[2rem] overflow-hidden shadow-2xl border border-outline-variant/30 z-10 hover:scale-[1.01] transition-transform duration-500">
-              <img 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkKv02r5TSthMJ6JAWZBI8vwvXW3s14eYJr3RpQXdpick-ChLCUk6NCPy3hKt6yOQEclwkwDZSjWWPHU-oWDfiXx0L6OnKkp-Do_BTNeUiVhZJ6Y5R03gCeLVMalOZfKPLasylk_niAHg1uLgvoEonyI7LjqmdMF8ogpHpyF8GW62ZOf7ArMeQazsnPP-szUA1sl2wH6hHcx1iigH9RrC8Bq0tOM6p7zkDtJqJOzZTy5cup8wl4zgimxBksteuRDD6saTcHBulnM8" 
-                alt="Hosiane Makeup Artist Portrait" 
+          <div className="relative flex justify-center w-full animate-rise-in" style={{ animationDelay: '0.2s' }}>
+            {/* Rotating gold ring halo */}
+            <div className="absolute w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] border border-dashed border-gold/30 rounded-full animate-spin-slow pointer-events-none" />
+            <div className="relative aspect-[4/5] w-full max-w-[360px] rounded-[2.5rem] overflow-hidden glow-ring z-10 hover:scale-[1.02] transition-transform duration-500">
+              <img
+                src="/portfolio/hero-bridal.jpg"
+                alt="Traditional glam bridal look by Hosiane Makeup"
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Soft decorative floating frames */}
-            <div className="absolute -bottom-6 -left-6 w-44 h-44 bg-surface-container-high rounded-3xl -z-10 shadow-lg border border-outline-variant/10 hidden sm:block" />
-            <div className="absolute -top-6 -right-6 w-32 h-32 border-4 border-gold/30 rounded-full -z-10 animate-pulse hidden sm:block" />
+            {/* Floating glass credential card */}
+            <div className="absolute -bottom-5 -left-3 sm:-left-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 z-20 shadow-xl animate-rise-in" style={{ animationDelay: '0.6s' }}>
+              <div className="w-9 h-9 rose-gold-gradient rounded-full flex items-center justify-center text-primary shrink-0">
+                <span className="material-symbols-outlined text-lg font-bold">workspace_premium</span>
+              </div>
+              <div className="text-left">
+                <p className="font-bold text-[11px] text-white leading-tight">Award-Winning</p>
+                <p className="text-[9px] text-blush/70 uppercase tracking-wider">Bridal Artistry</p>
+              </div>
+            </div>
+            <div className="absolute -top-4 -right-2 sm:-right-5 w-24 h-24 border-2 border-gold/40 rounded-full animate-pulse -z-0 hidden sm:block" />
           </div>
         </div>
+
+        {/* Smooth gradient fade into the next (light) section */}
+        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-[#fff0f0] pointer-events-none" />
       </section>
 
       {/* About The Artist Section */}
-      <section className="py-20 md:py-28 bg-surface-container-low border-y border-outline-variant/15" id="about">
+      <section className="py-20 md:py-28 blush-wash border-y border-outline-variant/15" id="about">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
           <div className="relative flex justify-center">
-            <div className="aspect-square w-full max-w-[380px] rounded-[3rem] overflow-hidden shadow-xl rotate-3 border-2 border-white">
-              <img 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu-3TeAqlW-J_QUxOYGuUCGYYBz85FoOEUsYuwm_amdRadnSZja2k7HSyWZWDCYxsSbSO555cJyldezAVtir1GaNOjj8k1TCkS_-s8tvn3ymzDFdWzQnSz-jlDq-doRL0h6jofxqQkYwPUoQX-iCfKsZTVEpS0WdXdixrkxO_HelScwCv-2ApfdfkvJI5-2drmoQBMAp2xUQtp2Ke1bJdxjh958p4SJNj2GNifpbhd0BzxaRNgNYBeo02Qw9NcHEjh1pHEBdsSQIw" 
-                alt="Detailed Closeup of Makeup Artistry Look" 
-                className="w-full h-full object-cover"
+            <div className="aspect-square w-full max-w-[380px] rounded-[3rem] overflow-hidden shadow-xl rotate-3 border-2 border-white hover:rotate-0 transition-transform duration-500">
+              <img
+                src="/portfolio/glam-portrait.jpg"
+                alt="Detailed closeup of natural rose glam makeup artistry"
+                className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute inset-0 max-w-[380px] mx-auto bg-primary/5 rounded-[3rem] -rotate-3 -z-10" />
+            <div className="absolute inset-0 max-w-[380px] mx-auto rose-gold-gradient opacity-30 rounded-[3rem] -rotate-3 -z-10" />
+            <div className="absolute -bottom-4 -right-2 w-24 h-24 border-2 border-gold/40 rounded-full animate-spin-slow -z-10 hidden sm:block" />
           </div>
 
           <div className="space-y-6">
@@ -376,7 +415,7 @@ export default function App() {
               id={`service-card-${srv.id}`}
             >
               <div>
-                <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
+                <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:rose-gold-gradient group-hover:text-primary group-hover:scale-110 transition-all duration-300">
                   {getServiceIcon(srv.icon)}
                 </div>
                 <h3 className="font-serif text-lg font-bold text-primary mb-2 group-hover:text-gold transition-colors">{srv.name}</h3>
@@ -492,7 +531,7 @@ export default function App() {
       </section>
 
       {/* Portfolio Gallery Section */}
-      <section className="py-20 md:py-28 bg-surface-container-low border-y border-outline-variant/15" id="portfolio">
+      <section className="py-20 md:py-28 rose-wash border-y border-outline-variant/15" id="portfolio">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -567,7 +606,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-5 border border-outline-variant/20">
           
           {/* Side static contact info panel */}
-          <div className="md:col-span-2 bg-primary p-10 md:p-12 text-on-primary flex flex-col justify-between">
+          <div className="md:col-span-2 hero-luxe-bg p-10 md:p-12 text-on-primary flex flex-col justify-between relative overflow-hidden">
             <div className="space-y-6">
               <div>
                 <span className="text-[10px] uppercase text-gold tracking-widest font-bold">Contact</span>
@@ -679,9 +718,9 @@ export default function App() {
                   />
                 </div>
 
-                <button 
+                <button
                   type="submit"
-                  className="w-full gold-gradient text-primary font-sans font-bold py-3.5 rounded-xl shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all"
+                  className="w-full rose-gold-gradient text-primary font-sans font-bold py-3.5 rounded-xl shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all"
                   id="contact-form-submit-btn"
                 >
                   Send Inquiry Now
@@ -823,7 +862,7 @@ export default function App() {
                       const mappedSrv = services.find(s => s.category === activeLightboxItem.category) || services[0];
                       triggerServiceBooking(mappedSrv.id);
                     }}
-                    className="flex-1 gold-gradient text-primary font-sans font-bold py-3.5 rounded-xl shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all text-center"
+                    className="flex-1 rose-gold-gradient text-primary font-sans font-bold py-3.5 rounded-xl shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all text-center"
                     id="lightbox-book-btn"
                   >
                     Schedule This Style Look

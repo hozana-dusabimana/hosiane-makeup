@@ -74,40 +74,33 @@ export default function BeforeAfterSlider() {
               }`}
               id={`look-btn-${item.id}`}
             >
-              {idx === 0 ? 'Bridal Look' : 'Sunset Glam'}
+              {idx === 0 ? 'Bridal Look' : 'Editorial Glam'}
             </button>
           ))}
         </div>
       </div>
 
-      <div 
+      <div
         ref={containerRef}
-        className="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden select-none cursor-ew-resize border border-outline-variant"
+        className="relative w-full max-w-sm mx-auto aspect-[4/5] rounded-2xl overflow-hidden select-none cursor-ew-resize border border-outline-variant"
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       >
         {/* After Image (Full Color, Right side by default) */}
-        <img 
-          src={look.afterImage} 
-          alt={`${look.title} after professional makeup`} 
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        <img
+          src={look.afterImage}
+          alt={`${look.title} after professional makeup`}
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
         />
 
-        {/* Before Image (Left side, clipped) */}
-        <div 
-          className="absolute inset-0 overflow-hidden pointer-events-none"
-          style={{ width: `${sliderPosition}%` }}
-        >
-          {/* Note: we must make sure the inner image is full-width regardless of parent clip width */}
-          <div className="absolute inset-0 w-[100%] h-[100%]" style={{ width: containerRef.current?.getBoundingClientRect().width || '100%' }}>
-            <img 
-              src={look.beforeImage} 
-              alt={`${look.title} before makeup`} 
-              className="absolute inset-0 w-full h-full object-cover grayscale opacity-50"
-              style={{ width: containerRef.current?.getBoundingClientRect().width || '100%', maxWidth: 'none' }}
-            />
-          </div>
-        </div>
+        {/* Before Image — same full-size layer, clipped to the left of the slider.
+            clip-path keeps it pixel-aligned with the After image at any width. */}
+        <img
+          src={look.beforeImage}
+          alt={`${look.title} before makeup`}
+          className="absolute inset-0 w-full h-full object-cover object-center grayscale pointer-events-none"
+          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+        />
 
         {/* Sliding Divider Bar */}
         <div 
